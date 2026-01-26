@@ -1,0 +1,233 @@
+# =============================================================================
+# MICROSOFT FOUNDRY MULTI-AGENT WORKFLOW
+# Invoice Processing with 3-Way Matching
+# =============================================================================
+# 
+# This workflow demonstrates enterprise-grade invoice processing using:
+# - Document extraction (Invoice, PO, GRN)
+# - Three-way matching validation
+# - Database validation via MCP SQL tool
+# - Risk-based approval routing
+# - Automated email notifications
+#
+# CRITICAL: All agents must be created in Foundry Portal (not SDK) to ensure
+# proper input/output schema metadata. SDK-created agents default to Array 
+# schema which breaks workflow invocation.
+#
+# Agent Chain Pattern:
+# - First agent: messages: =System.LastMessage (captures Question response)
+# - All subsequent: messages: =Local.LatestMessage (passes agent output forward)
+#
+# =============================================================================
+
+kind: workflow
+trigger:
+  kind: OnConversationStart
+  id: trigger_wf
+  actions:
+    # =========================================================================
+    # STEP 1: Initialize Case ID
+    # =========================================================================
+    - kind: SetVariable
+      id: init-case-id
+      variable: Local.case_id
+      value: ="INV-" & System.ConversationId
+      
+    # =========================================================================
+    # STEP 2: Collect Documents from User
+    # =========================================================================
+    - kind: Question
+      id: get-documents
+      variable: Local.user_documents
+      entity: StringPrebuiltEntity
+      prompt: |
+        Welcome to the Invoice Processing Workflow! 📋
+        Case ID: {{Local.case_id}}
+
+        Please paste your INVOICE, PURCHASE ORDER, and GOODS RECEIPT documents below.
+        
+        You can paste all three documents together or one at a time.
+        
+    # =========================================================================
+    # STEP 3: Document Extraction Agent
+    # =========================================================================
+    # Extracts structured JSON data from Invoice, PO, and GRN documents
+    # Output: { invoice: {...}, purchase_order: {...}, goods_receipt: {...} }
+    # =========================================================================
+    - kind: InvokeAzureAgent
+      id: invoke-extractor
+      agent:
+        name: document-extractor
+      description: Extract structured data from invoice, PO, and GRN documents
+      conversationId: =System.ConversationId
+      input:
+        messages: =System.LastMessage  # First agent uses System.LastMessage
+      output:
+        messages: Local.LatestMessage
+        autoSend: true
+        
+    # =========================================================================
+    # STEP 4: Three-Way Matcher Agent
+    # =========================================================================
+    # Compares Invoice vs PO vs GRN to detect mismatches
+    # Output: { match_score: 85, mismatches: [...], recommendation: "..." }
+    # =========================================================================
+    - kind: InvokeAzureAgent
+      id: invoke-matcher
+      agent:
+        name: three-way-matcher
+      description: Perform three-way matching between Invoice, PO, and GRN
+      conversationId: =System.ConversationId
+      input:
+        messages: =Local.LatestMessage  # Chain uses Local.LatestMessage
+      output:
+        messages: Local.LatestMessage
+        autoSend: true
+        
+    # =========================================================================
+    # STEP 5: SQL Validator Agent (MCP Tool)
+    # =========================================================================
+    # Validates vendor, bank details, PO amounts against Azure SQL database
+    # Uses MCP connection: sqlworflowmcp
+    # Output: { vendor_validation: {...}, bank_validation: {...}, ... }
+    # =========================================================================
+    - kind: InvokeAzureAgent
+      id: invoke-sql-validator
+      agent:
+        name: sql-validator
+      description: Validate vendor and invoice data against internal database
+      conversationId: =System.ConversationId
+      input:
+        messages: =Local.LatestMessage
+      output:
+        messages: Local.LatestMessage
+        autoSend: true
+        
+    # =========================================================================
+    # STEP 6: Risk Scorer Agent
+    # =========================================================================
+    # Calculates risk score (0-100) based on validation results
+    # Determines approval routing (standard vs escalation)
+    # Output: { risk_score: 45, risk_level: "MEDIUM", routing: "..." }
+    # =========================================================================
+    - kind: InvokeAzureAgent
+      id: invoke-risk-scorer
+      agent:
+        name: risk-scorer
+      description: Calculate risk score and determine approval routing
+      conversationId: =System.ConversationId
+      input:
+        messages: =Local.LatestMessage
+      output:
+        messages: Local.LatestMessage
+        autoSend: true
+        
+    # =========================================================================
+    # STEP 7: Human-in-the-Loop Approval
+    # =========================================================================
+    # Presents risk assessment to approver for decision
+    # =========================================================================
+    - kind: Question
+      id: approval-question
+      variable: Local.approval_response
+      entity: StringPrebuiltEntity
+      prompt: |
+        🔐 APPROVAL REQUIRED
+        Case ID: {{Local.case_id}}
+
+        Based on the risk assessment above, please review and make a decision.
+
+        Type APPROVE or REJECT:
+        
+    # =========================================================================
+    # STEP 8: Conditional Routing Based on Approval Decision
+    # =========================================================================
+    - kind: ConditionGroup
+      id: check-approval
+      conditions:
+        # ---------------------------------------------------------------------
+        # IF APPROVED: Generate payment pack and send approval email
+        # ---------------------------------------------------------------------
+        - condition: =Upper(Local.approval_response) = "APPROVE" Or Upper(Local.approval_response) = "YES"
+          id: condition-approved
+          actions:
+            # Generate final payment authorization package
+            - kind: InvokeAzureAgent
+              id: invoke-payment-pack
+              agent:
+                name: payment-pack-generator
+              description: Generate final payment authorization package
+              conversationId: =System.ConversationId
+              input:
+                messages: =Local.LatestMessage
+              output:
+                messages: Local.LatestMessage
+                autoSend: true
+                
+            # Send approval notification via MCP Outlook tool
+            - kind: InvokeAzureAgent
+              id: invoke-approval-email
+              agent:
+                name: email-notifier
+              description: Send approval notification email to finance team
+              conversationId: =System.ConversationId
+              input:
+                messages: =Local.LatestMessage
+              output:
+                messages: Local.LatestMessage
+                autoSend: true
+                
+        # ---------------------------------------------------------------------
+        # IF REJECTED: Send rejection email and close case
+        # ---------------------------------------------------------------------
+        - condition: =Upper(Local.approval_response) = "REJECT" Or Upper(Local.approval_response) = "NO"
+          id: condition-rejected
+          actions:
+            - kind: InvokeAzureAgent
+              id: invoke-rejection-email
+              agent:
+                name: email-notifier
+              description: Send rejection notification email to requester
+              conversationId: =System.ConversationId
+              input:
+                messages: =Local.LatestMessage
+              output:
+                messages: Local.LatestMessage
+                autoSend: true
+                
+      # -----------------------------------------------------------------------
+      # ELSE: Invalid response - loop back to approval question
+      # -----------------------------------------------------------------------
+      elseActions:
+        - kind: GotoAction
+          id: goto-approval
+          actionId: approval-question
+          
+    # =========================================================================
+    # STEP 9: End Workflow
+    # =========================================================================
+    - kind: EndConversation
+      id: end-workflow
+      
+# =============================================================================
+# WORKFLOW METADATA
+# =============================================================================
+id: ""
+name: Invoice-Processing-Workflow
+description: |
+  Enterprise invoice processing workflow demonstrating:
+  - Multi-agent orchestration (6 agents)
+  - Conditional logic and approval gates
+  - Database integration via MCP
+  - Email notifications via MCP
+  - Audit trail and case management
+  
+# =============================================================================
+# REQUIRED AGENTS (must be created in Foundry Portal):
+# - document-extractor (no MCP tools)
+# - three-way-matcher (no MCP tools)
+# - sql-validator (MCP: sqlworflowmcp)
+# - risk-scorer (no MCP tools)
+# - payment-pack-generator (no MCP tools)
+# - email-notifier (MCP: outlookworkflowemail)
+# =============================================================================

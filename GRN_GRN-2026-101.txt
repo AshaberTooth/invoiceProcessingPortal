@@ -1,0 +1,51 @@
+══════════════════════════════════════════════════════════
+                GOODS RECEIPT NOTE (GRN)
+══════════════════════════════════════════════════════════
+
+GRN Number: GRN-2026-101
+GRN Date: January 14, 2026
+PO Reference: PO-2026-101
+
+──────────────────────────────────────────────────────────
+VENDOR INFORMATION
+──────────────────────────────────────────────────────────
+TechGear Solutions Inc.
+Delivery Note Number: DN-TG-2026-0145
+
+──────────────────────────────────────────────────────────
+RECEIVING INFORMATION
+──────────────────────────────────────────────────────────
+Received By: James Wilson
+Warehouse Location: Warehouse A - Section B3
+Receiving Date: January 14, 2026, 10:30 AM
+
+──────────────────────────────────────────────────────────
+ITEMS RECEIVED
+──────────────────────────────────────────────────────────
+Item   Description              Ordered   Received   Rejected
+────────────────────────────────────────────────────────── 
+1      Wireless Mouse Pro       50        50         0
+2      USB-C Hub 7-Port         30        30         0
+3      Laptop Stand Aluminum    20        20         0
+
+──────────────────────────────────────────────────────────
+SUMMARY
+──────────────────────────────────────────────────────────
+Total Items Ordered: 100
+Total Items Received: 100
+Total Items Rejected: 0
+
+Rejection Reason: N/A
+
+──────────────────────────────────────────────────────────
+CONDITION NOTES
+──────────────────────────────────────────────────────────
+All items received in excellent condition. Packaging intact.
+No damage observed. Quality inspection passed.
+
+All items match the specifications in PO-2026-101.
+
+Inspected By: James Wilson
+Inspection Date: January 14, 2026
+
+══════════════════════════════════════════════════════════
