@@ -153,8 +153,10 @@ try:
     from azure.ai.projects import AIProjectClient
     print("Azure imports successful")
 except Exception as e:
-    print("REAL ERROR:")
-    print(e)
+    import traceback
+    print("REAL IMPORT ERROR:")
+    traceback.print_exc()
+    raise
 
 # -----------------------------------------------------------------------------
 # Config
