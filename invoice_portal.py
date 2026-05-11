@@ -151,10 +151,10 @@ except ImportError:
 try:
     from azure.identity import DefaultAzureCredential
     from azure.ai.projects import AIProjectClient
-    from azure.ai.projects.models import ResponseStreamEventType
-except ImportError:
-    print("Install Azure SDK: pip install azure-identity azure-ai-projects")
-    sys.exit(1)
+    print("Azure imports successful")
+except Exception as e:
+    print("REAL ERROR:")
+    print(e)
 
 # -----------------------------------------------------------------------------
 # Config

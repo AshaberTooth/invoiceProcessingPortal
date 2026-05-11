@@ -1,0 +1,60 @@
+══════════════════════════════════════════════════════════
+                    COMMERCIAL INVOICE
+══════════════════════════════════════════════════════════
+
+Invoice Number: INV-2026-101
+Invoice Date: January 15, 2026
+Due Date: February 14, 2026
+PO Reference: PO-2026-101
+
+──────────────────────────────────────────────────────────
+VENDOR INFORMATION
+──────────────────────────────────────────────────────────
+TechGear Solutions Inc.
+Vendor ID: VEND001
+Tax ID: 98-7654321
+1234 Technology Drive
+San Francisco, CA 94105
+United States
+
+Contact: sales@techgear.com
+Phone: +1-555-0101
+
+──────────────────────────────────────────────────────────
+BILL TO
+──────────────────────────────────────────────────────────
+Enterprise Corp
+Procurement Department
+789 Business Plaza
+New York, NY 10001
+
+──────────────────────────────────────────────────────────
+LINE ITEMS
+──────────────────────────────────────────────────────────
+Item   Description              Qty    Unit Price    Total
+────────────────────────────────────────────────────────── 
+1      Wireless Mouse Pro       50     $25.00        $1,250.00
+2      USB-C Hub 7-Port         30     $45.00        $1,350.00
+3      Laptop Stand Aluminum    20     $35.00        $700.00
+
+──────────────────────────────────────────────────────────
+SUMMARY
+──────────────────────────────────────────────────────────
+Subtotal:                                           $3,300.00
+Tax (8.5%):                                         $280.50
+Total Amount:                                       $3,580.50
+
+Currency: USD
+Payment Terms: Net 30
+
+──────────────────────────────────────────────────────────
+PAYMENT INFORMATION
+──────────────────────────────────────────────────────────
+Bank Name: First National Bank
+Account Number: ****5678
+Routing Number: 021000021
+SWIFT Code: FNBUS33
+
+Notes: All items delivered and inspected. Payment due by February 14, 2026.
+
+══════════════════════════════════════════════════════════
