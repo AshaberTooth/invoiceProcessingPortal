@@ -63,4 +63,4 @@ jobs:
         with:
           app-name: 'InvoiceProcessingMultiAgent'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2E8475F5BDDF434CBF3FB66525F4C2EC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED1C996332664178992345133864B068 }}
