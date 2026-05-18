@@ -1,0 +1,51 @@
+══════════════════════════════════════════════════════════
+                    PURCHASE ORDER
+══════════════════════════════════════════════════════════
+
+PO Number: PO-2026-101
+PO Date: January 5, 2026
+Expiry Date: March 31, 2026
+Status: Open
+
+──────────────────────────────────────────────────────────
+VENDOR INFORMATION
+──────────────────────────────────────────────────────────
+TechGear Solutions Inc.
+Vendor ID: VEND001
+1234 Technology Drive
+San Francisco, CA 94105
+
+──────────────────────────────────────────────────────────
+DELIVERY ADDRESS
+──────────────────────────────────────────────────────────
+Enterprise Corp - Warehouse A
+789 Business Plaza
+New York, NY 10001
+
+──────────────────────────────────────────────────────────
+LINE ITEMS
+──────────────────────────────────────────────────────────
+Item   Description              Qty    Unit Price    Total
+────────────────────────────────────────────────────────── 
+1      Wireless Mouse Pro       50     $25.00        $1,250.00
+2      USB-C Hub 7-Port         30     $45.00        $1,350.00
+3      Laptop Stand Aluminum    20     $35.00        $700.00
+
+──────────────────────────────────────────────────────────
+TOTAL
+──────────────────────────────────────────────────────────
+Total Amount: $3,300.00
+Currency: USD
+
+──────────────────────────────────────────────────────────
+APPROVALS
+──────────────────────────────────────────────────────────
+Requested By: Sarah Johnson
+Department: IT Operations
+Approved By: Michael Chen
+Approval Date: January 5, 2026
+
+Payment Terms: Net 30
+Special Instructions: Standard delivery, no rush required
+
+══════════════════════════════════════════════════════════

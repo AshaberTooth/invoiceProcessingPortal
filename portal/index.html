@@ -7,15 +7,15 @@
 
     <style>
         :root {
-            --primary-navy: #061a36;
-            --dark-blue: #08264f;
-            --blue: #0b4f9c;
-            --light-blue: #7db7ff;
-            --white: #ffffff;
-            --soft-white: #f4f7fb;
-            --muted: #b7c7db;
-            --border: rgba(255, 255, 255, 0.16);
-            --card: rgba(255, 255, 255, 0.08);
+            --ntt-navy: #001f4e;
+            --ntt-dark-blue: #003b7a;
+            --ntt-blue: #005eb8;
+            --ntt-light-blue: #4aa3ff;
+            --ntt-white: #ffffff;
+            --ntt-soft-white: #f4f7fb;
+            --ntt-muted: #b7c7db;
+            --ntt-border: rgba(255, 255, 255, 0.16);
+            --ntt-card: rgba(255, 255, 255, 0.08);
             --success: #16a34a;
             --warning: #f59e0b;
             --danger: #dc2626;
@@ -30,9 +30,11 @@
 
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--dark-blue) 55%, #020b18 100%);
+            background:
+                radial-gradient(circle at top left, rgba(74, 163, 255, 0.18), transparent 34%),
+                linear-gradient(135deg, var(--ntt-navy) 0%, #002d62 48%, #00152f 100%);
             min-height: 100vh;
-            color: var(--white);
+            color: var(--ntt-white);
         }
 
         .container {
@@ -47,20 +49,41 @@
             justify-content: space-between;
             padding: 18px 22px;
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border);
+            border: 1px solid var(--ntt-border);
             border-radius: 18px;
             box-shadow: var(--shadow);
             backdrop-filter: blur(16px);
         }
 
-        .brand-text h2 {
-            font-size: 1.25rem;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: var(--ntt-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ntt-navy);
             font-weight: 800;
-            letter-spacing: 0.3px;
+            font-size: 1rem;
+            letter-spacing: 0.4px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 94, 184, 0.25);
+        }
+
+        .brand-text h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
         }
 
         .brand-text p {
-            color: var(--muted);
+            color: var(--ntt-muted);
             font-size: 0.82rem;
             margin-top: 2px;
         }
@@ -69,8 +92,8 @@
             padding: 8px 14px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.12);
-            border: 1px solid var(--border);
-            color: var(--soft-white);
+            border: 1px solid var(--ntt-border);
+            color: var(--ntt-soft-white);
             font-size: 0.85rem;
             font-weight: 600;
         }
@@ -83,17 +106,17 @@
         header h1 {
             font-size: clamp(2rem, 4vw, 3.1rem);
             font-weight: 750;
-            color: var(--white);
+            color: var(--ntt-white);
             margin-bottom: 12px;
             letter-spacing: -0.8px;
         }
 
         header h1 span {
-            color: var(--light-blue);
+            color: var(--ntt-light-blue);
         }
 
         header p {
-            color: var(--muted);
+            color: var(--ntt-muted);
             font-size: 1.08rem;
             max-width: 760px;
             margin: 0 auto;
@@ -121,10 +144,10 @@
 
         .upload-section,
         .progress-section {
-            background: var(--card);
+            background: var(--ntt-card);
             border-radius: 20px;
             padding: 30px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--ntt-border);
             backdrop-filter: blur(18px);
             box-shadow: var(--shadow);
         }
@@ -132,7 +155,7 @@
         .section-title {
             font-size: 1.35rem;
             margin-bottom: 22px;
-            color: var(--white);
+            color: var(--ntt-white);
         }
 
         .upload-box {
@@ -146,8 +169,8 @@
         }
 
         .upload-box:hover {
-            border-color: var(--light-blue);
-            background: rgba(125, 183, 255, 0.1);
+            border-color: var(--ntt-light-blue);
+            background: rgba(74, 163, 255, 0.1);
             transform: translateY(-1px);
         }
 
@@ -165,14 +188,14 @@
             text-align: center;
         }
 
-        .upload-box .doc-type {
+        .doc-type {
             font-weight: 700;
             font-size: 1.08rem;
-            color: var(--white);
+            color: var(--ntt-white);
         }
 
-        .upload-box .file-name {
-            color: var(--muted);
+        .file-name {
+            color: var(--ntt-muted);
             font-size: 0.92rem;
             word-break: break-word;
         }
@@ -182,7 +205,7 @@
             font-weight: 600;
         }
 
-        .upload-box input[type="file"] {
+        input[type="file"] {
             display: none;
         }
 
@@ -196,17 +219,17 @@
             cursor: pointer;
             transition: all 0.25s ease;
             margin-top: 20px;
-            color: var(--white);
+            color: var(--ntt-white);
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--blue), var(--light-blue));
-            box-shadow: 0 10px 26px rgba(11, 79, 156, 0.35);
+            background: linear-gradient(90deg, var(--ntt-blue), var(--ntt-light-blue));
+            box-shadow: 0 10px 26px rgba(0, 94, 184, 0.35);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 34px rgba(11, 79, 156, 0.45);
+            box-shadow: 0 14px 34px rgba(0, 94, 184, 0.45);
         }
 
         .btn-primary:disabled {
@@ -242,8 +265,8 @@
         }
 
         .progress-item.active {
-            border-left-color: var(--light-blue);
-            background: rgba(125, 183, 255, 0.13);
+            border-left-color: var(--ntt-light-blue);
+            background: rgba(74, 163, 255, 0.13);
         }
 
         .progress-item.completed {
@@ -271,12 +294,12 @@
             font-size: 0.88rem;
             flex-shrink: 0;
             background: rgba(255, 255, 255, 0.12);
-            color: var(--white);
+            color: var(--ntt-white);
             font-weight: 700;
         }
 
         .progress-item.active .progress-icon {
-            background: var(--light-blue);
+            background: var(--ntt-light-blue);
             color: #00152f;
             animation: pulse 1.5s infinite;
         }
@@ -311,12 +334,12 @@
 
         .progress-content h4 {
             margin-bottom: 5px;
-            color: var(--white);
+            color: var(--ntt-white);
             font-size: 0.98rem;
         }
 
         .progress-content p {
-            color: var(--muted);
+            color: var(--ntt-muted);
             font-size: 0.9rem;
             line-height: 1.45;
         }
@@ -335,11 +358,12 @@
             display: none !important;
         }
 
-        .completion-banner,
-        .workflow-summary {
+        .completion-banner {
             margin-top: 20px;
-            border-radius: 14px;
             padding: 20px;
+            border-radius: 14px;
+            position: relative;
+            animation: slideIn 0.3s ease;
         }
 
         .completion-banner.success {
@@ -352,32 +376,96 @@
             border: 1px solid rgba(239, 68, 68, 0.65);
         }
 
-        .workflow-summary {
-            background: rgba(0, 21, 47, 0.74);
-            border: 1px solid rgba(255, 255, 255, 0.14);
+        .completion-banner h3 {
+            margin-bottom: 10px;
+            font-size: 1.18rem;
         }
 
-        .step-output,
-        .step-output-box {
-            background: #061a36;
+        .completion-banner p {
+            color: var(--ntt-muted);
+            line-height: 1.5;
+        }
+
+        .completion-banner .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: var(--ntt-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.72;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .workflow-summary {
+            margin-top: 20px;
+            background: rgba(0, 21, 47, 0.74);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            animation: slideIn 0.3s ease;
+        }
+
+        .workflow-summary h3 {
+            margin-bottom: 15px;
+            color: var(--ntt-light-blue);
+        }
+
+        .summary-step {
+            background: rgba(255, 255, 255, 0.07);
             border-radius: 10px;
-            padding: 12px;
-            margin-top: 10px;
-            font-family: Consolas, Monaco, monospace;
-            font-size: 0.8rem;
-            color: #dbeafe;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--success);
+        }
+
+        .summary-step.error {
+            border-left-color: var(--danger);
+        }
+
+        .summary-step h4 {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .step-details {
+            color: var(--ntt-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
             white-space: pre-wrap;
-            word-break: break-word;
-            max-height: 200px;
+            max-height: 150px;
             overflow-y: auto;
-            border: 1px solid rgba(125, 183, 255, 0.28);
+        }
+
+        .toggle-details {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: var(--ntt-muted);
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 8px;
         }
 
         .portal-footer {
             text-align: center;
-            color: var(--muted);
+            color: var(--ntt-muted);
             font-size: 0.82rem;
             margin: 32px 0 8px;
+            line-height: 1.7;
         }
     </style>
 </head>
@@ -385,9 +473,12 @@
 <body>
     <div class="container">
         <nav class="topbar">
-            <div class="brand-text">
-                <h2>KataruCorp</h2>
-                <p>Intelligent Invoice Processing</p>
+            <div class="brand">
+                <div class="brand-mark">KC</div>
+                <div class="brand-text">
+                    <h2>KataruCorp</h2>
+                    <p>Intelligent Invoice Processing</p>
+                </div>
             </div>
             <div class="topbar-badge">Secure Finance Workflow</div>
         </nav>
@@ -488,22 +579,776 @@
                 </ul>
 
                 <div class="approval-buttons hidden" id="approvalButtons">
-                    <button class="btn btn-approve" onclick="submitApproval('APPROVE')">
-                        Approve
-                    </button>
-                    <button class="btn btn-reject" onclick="submitApproval('REJECT')">
-                        Reject
-                    </button>
+                    <button class="btn btn-approve" onclick="submitApproval('APPROVE')">Approve</button>
+                    <button class="btn btn-reject" onclick="submitApproval('REJECT')">Reject</button>
                 </div>
             </div>
         </div>
 
         <div class="portal-footer">
-            KataruCorp Invoice Processing Portal | AI-enabled finance operations
+            KataruCorp Invoice Processing Portal | AI-enabled finance operations<br>
+            Developed by Ashish M
         </div>
     </div>
 
-    <!-- Keep your existing JavaScript logic here. 
-         Remove emoji characters from JS button labels/messages if required. -->
+    <script>
+        let currentSessionId = null;
+        let eventSource = null;
+        let workflowSteps = {};
+        let fullStepMessages = {};
+
+        const stepInfo = {
+            'upload': { name: 'Document Upload', icon: '', order: 1 },
+            'foundry_upload': { name: 'Foundry Upload & Vectorization', icon: '', order: 2 },
+            'init': { name: 'Initialize Workflow', icon: '', order: 3 },
+            'init-variables': { name: 'Initialize Variables', icon: '', order: 3 },
+            'welcome': { name: 'Workflow Started', icon: '', order: 4 },
+            'documents': { name: 'Documents Sent', icon: '', order: 5 },
+            'invoke-extractor': { name: 'Document Extraction', icon: '', order: 6 },
+            'invoke-matcher': { name: 'Three-Way Matching', icon: '', order: 7 },
+            'invoke-sql-validator': { name: 'Database Validation', icon: '', order: 8 },
+            'invoke-risk-scorer': { name: 'Risk Assessment', icon: '', order: 9 },
+            'approval': { name: 'Approval Decision', icon: '', order: 10 },
+            'approval-question': { name: 'Approval Decision', icon: '', order: 10 },
+            'approval_submit': { name: 'Approval Submitted', icon: '', order: 10 },
+            'invoke-payment-pack': { name: 'Payment Pack', icon: '', order: 11 },
+            'payment_pack': { name: 'Payment Pack', icon: '', order: 11 },
+            'invoke-approval-email': { name: 'Approval Email', icon: '', order: 12 },
+            'invoke-rejection-email': { name: 'Rejection Email', icon: '', order: 12 },
+            'email_sent': { name: 'Email Notification', icon: '', order: 12 },
+            'workflow_complete': { name: 'Workflow Complete', icon: '', order: 13 },
+            'final_decision': { name: 'Final Decision', icon: '', order: 14 }
+        };
+
+        document.getElementById('invoiceFile').addEventListener('change', function() {
+            updateFileName('invoice', this);
+        });
+
+        document.getElementById('poFile').addEventListener('change', function() {
+            updateFileName('po', this);
+        });
+
+        document.getElementById('grnFile').addEventListener('change', function() {
+            updateFileName('grn', this);
+        });
+
+        function updateFileName(type, input) {
+            const fileName = input.files[0]?.name || 'Click to select file';
+            document.getElementById(type + 'FileName').textContent = fileName;
+            document.getElementById(type + 'Box').classList.toggle('has-file', input.files.length > 0);
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Uploading...';
+
+            workflowSteps = {};
+            fullStepMessages = {};
+
+            const existingSummary = document.querySelector('.workflow-summary');
+            if (existingSummary) existingSummary.remove();
+
+            const existingBanner = document.querySelector('.completion-banner');
+            if (existingBanner) existingBanner.remove();
+
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active', 'completed', 'error', 'waiting');
+
+                var stepOutput = item.querySelector('.step-output');
+                if (stepOutput) stepOutput.remove();
+
+                var p = item.querySelector('p');
+                if (p) {
+                    var stepId = item.id;
+                    if (stepId === 'step-upload') p.textContent = 'Waiting for documents...';
+                    else if (stepId === 'step-extract') p.textContent = 'Extract data from documents';
+                    else if (stepId === 'step-match') p.textContent = 'Compare Invoice, PO, and GRN';
+                    else if (stepId === 'step-validate') p.textContent = 'Validate against SQL database';
+                    else if (stepId === 'step-risk') p.textContent = 'Calculate risk score';
+                    else if (stepId === 'step-approval') p.textContent = 'Waiting for approval decision';
+                    else if (stepId === 'step-email') p.textContent = 'Notification will be sent after approval decision';
+                }
+            });
+
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(await response.text());
+                }
+
+                const data = await response.json();
+                currentSessionId = data.session_id;
+
+                startProgressStream(currentSessionId);
+
+                submitBtn.textContent = 'Processing...';
+
+            } catch (error) {
+                alert('Error: ' + error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Start Processing';
+            }
+        });
+
+        function startProgressStream(sessionId) {
+            if (eventSource) {
+                eventSource.close();
+            }
+
+            eventSource = new EventSource('/api/progress/' + sessionId);
+
+            eventSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+
+                if (data.type === 'keepalive') return;
+
+                updateProgress(data);
+
+                if (data.status === 'complete' || data.status === 'error') {
+                    eventSource.close();
+                }
+            };
+
+            eventSource.onerror = function() {
+                if (eventSource) {
+                    eventSource.close();
+                    eventSource = null;
+                }
+            };
+        }
+
+        const PROGRESS_STEP_IDS = [
+            'step-upload',
+            'step-extract',
+            'step-match',
+            'step-validate',
+            'step-risk',
+            'step-approval',
+            'step-email'
+        ];
+
+        function clearActiveFromAllSteps() {
+            PROGRESS_STEP_IDS.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.classList.remove('active');
+            });
+        }
+
+        function markStepsCompletedUpTo(stepId) {
+            var idx = PROGRESS_STEP_IDS.indexOf(stepId);
+            if (idx <= 0) return;
+
+            for (var i = 0; i < idx; i++) {
+                var el = document.getElementById(PROGRESS_STEP_IDS[i]);
+                if (el && !el.classList.contains('completed') && !el.classList.contains('error')) {
+                    el.classList.remove('active', 'waiting');
+                    el.classList.add('completed');
+                }
+            }
+        }
+
+        function updateProgress(data) {
+            const stepMap = {
+                'upload': 'step-upload',
+                'foundry_upload': 'step-upload',
+                'invoke-extractor': 'step-extract',
+                'invoke-matcher': 'step-match',
+                'invoke-sql-validator': 'step-validate',
+                'invoke-risk-scorer': 'step-risk',
+                'approval': 'step-approval',
+                'approval-question': 'step-approval',
+                'approval_submit': 'step-approval',
+                'workflow_complete': 'step-approval',
+                'invoke-approval-email': 'step-email',
+                'invoke-rejection-email': 'step-email'
+            };
+
+            const stepKey = data.step || 'unknown';
+
+            if (data.status === 'completed' || data.status === 'error') {
+                workflowSteps[stepKey] = {
+                    message: data.message,
+                    status: data.status,
+                    timestamp: data.timestamp,
+                    data: data.data
+                };
+                fullStepMessages[stepKey] = data.message;
+            }
+
+            let stepId = stepMap[data.step];
+
+            if (!stepId) {
+                for (const [key, value] of Object.entries(stepMap)) {
+                    if (data.step && data.step.includes(key)) {
+                        stepId = value;
+                        break;
+                    }
+                }
+            }
+
+            if (stepId) {
+                const stepEl = document.getElementById(stepId);
+
+                if (stepEl) {
+                    clearActiveFromAllSteps();
+                    stepEl.classList.remove('active', 'completed', 'error', 'waiting');
+
+                    const isApprovalStep = data.step === 'approval' || data.step === 'approval-question';
+                    const atApprovalWaiting = isApprovalStep && (data.status === 'waiting' || data.status === 'active');
+
+                    if (data.status === 'waiting' || atApprovalWaiting) {
+                        stepEl.classList.add('waiting');
+                        markStepsCompletedUpTo(stepId);
+                        document.getElementById('approvalButtons').classList.remove('hidden');
+                    } else {
+                        stepEl.classList.add(data.status || 'active');
+
+                        if (data.status === 'active') {
+                            markStepsCompletedUpTo(stepId);
+                        }
+                    }
+
+                    const msgEl = stepEl.querySelector('p');
+
+                    if (msgEl && data.message) {
+                        msgEl.textContent = data.message.length > 100
+                            ? data.message.substring(0, 97) + '...'
+                            : data.message;
+                    }
+
+                    if (data.status === 'completed') {
+                        var rawOutput = (data.data && data.data.raw_output) || '';
+                        var displayContent = rawOutput || data.message || 'Step completed';
+                        var contentDiv = stepEl.querySelector('.progress-content');
+
+                        if (contentDiv) {
+                            var existingOutput = contentDiv.querySelector('.step-output');
+                            if (existingOutput) existingOutput.remove();
+
+                            var outputEl = document.createElement('div');
+                            outputEl.className = 'step-output';
+                            outputEl.style.cssText = 'background:#061a36;border-radius:10px;padding:10px;margin-top:10px;font-family:Consolas,Monaco,monospace;font-size:0.8rem;color:#dbeafe;white-space:pre-wrap;word-break:break-word;max-height:200px;overflow-y:auto;border:1px solid rgba(74,163,255,0.28);';
+
+                            displayContent = displayContent.trim().replace(/\n{3,}/g, '\n\n');
+                            var shortContent = displayContent.length > 500
+                                ? displayContent.substring(0, 500) + '...\n\n[Click "Show More" to see full output]'
+                                : displayContent;
+
+                            outputEl.textContent = shortContent;
+                            outputEl.setAttribute('data-full', displayContent);
+
+                            if (displayContent.length > 500) {
+                                var btn = document.createElement('button');
+                                btn.textContent = 'Show More';
+                                btn.style.cssText = 'background:rgba(255,255,255,0.1);border:none;color:#b7c7db;padding:4px 8px;border-radius:5px;font-size:0.75rem;cursor:pointer;margin-top:8px;';
+
+                                btn.onclick = function() {
+                                    if (btn.textContent === 'Show More') {
+                                        outputEl.textContent = displayContent;
+                                        outputEl.style.maxHeight = '400px';
+                                        btn.textContent = 'Show Less';
+                                    } else {
+                                        outputEl.textContent = shortContent;
+                                        outputEl.style.maxHeight = '200px';
+                                        btn.textContent = 'Show More';
+                                    }
+
+                                    outputEl.appendChild(btn);
+                                };
+
+                                outputEl.appendChild(btn);
+                            }
+
+                            contentDiv.appendChild(outputEl);
+                        }
+                    }
+
+                    if ((data.step === 'invoke-risk-scorer' || (data.step && data.step.indexOf('risk') !== -1)) && data.status === 'completed') {
+                        setTimeout(function() {
+                            var btn = document.getElementById('approvalButtons');
+
+                            if (btn && btn.classList.contains('hidden')) {
+                                btn.classList.remove('hidden');
+
+                                var stepApproval = document.getElementById('step-approval');
+
+                                if (stepApproval) {
+                                    clearActiveFromAllSteps();
+                                    stepApproval.classList.remove('active');
+                                    stepApproval.classList.add('waiting');
+
+                                    var p = stepApproval.querySelector('p');
+                                    if (p) p.textContent = 'Waiting for approval decision';
+                                }
+                            }
+                        }, 600);
+                    }
+
+                    if ((data.step === 'invoke-risk-scorer' || (data.step && data.step.indexOf('risk') !== -1)) && data.status === 'active') {
+                        setTimeout(function() {
+                            var btn = document.getElementById('approvalButtons');
+
+                            if (btn && btn.classList.contains('hidden')) {
+                                btn.classList.remove('hidden');
+
+                                var stepApproval = document.getElementById('step-approval');
+
+                                if (stepApproval) {
+                                    clearActiveFromAllSteps();
+                                    stepApproval.classList.remove('active');
+                                    stepApproval.classList.add('waiting');
+
+                                    var p = stepApproval.querySelector('p');
+                                    if (p) p.textContent = 'Waiting for approval decision';
+                                }
+                            }
+                        }, 3000);
+                    }
+                }
+            }
+
+            if (
+                data.show_approval_buttons === true ||
+                (data.step === 'approval' && data.status === 'waiting') ||
+                (data.step === 'approval-question' && (data.status === 'active' || data.status === 'waiting'))
+            ) {
+                document.getElementById('approvalButtons').classList.remove('hidden');
+                markStepsCompletedUpTo('step-approval');
+            }
+
+            if (data.status === 'complete') {
+                document.getElementById('approvalButtons').classList.add('hidden');
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = 'Start New Processing';
+            }
+        }
+
+        async function submitApproval(decision) {
+            if (!currentSessionId) return;
+
+            if (eventSource) {
+                eventSource.close();
+                eventSource = null;
+            }
+
+            const approvalStep = document.getElementById('step-approval');
+            const buttons = document.querySelectorAll('.approval-buttons .btn');
+
+            if (!approvalStep) return;
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            clearActiveFromAllSteps();
+            markStepsCompletedUpTo('step-approval');
+
+            approvalStep.classList.remove('waiting', 'completed', 'error');
+            approvalStep.classList.add('active');
+
+            var p = approvalStep.querySelector('p');
+            if (p) p.textContent = 'Processing ' + decision + '...';
+
+            try {
+                const response = await fetch('/api/approve/' + currentSessionId + '?decision=' + decision, {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+
+                if (response.status === 404) {
+                    throw new Error('Session not found - server may have restarted. Please upload documents again.');
+                }
+
+                if (response.status === 400 && data.error) {
+                    throw new Error(data.error);
+                }
+
+                if (!response.ok && data.error) {
+                    throw new Error(data.error);
+                }
+
+                if (response.status === 202 && data.status === 'processing') {
+                    approvalStep.classList.remove('active');
+                    approvalStep.classList.add('completed');
+
+                    var approvalPara = approvalStep.querySelector('p');
+
+                    if (approvalPara) {
+                        approvalPara.textContent = decision === 'APPROVE'
+                            ? 'Approved'
+                            : 'Rejected';
+                    }
+
+                    var emailStep = document.getElementById('step-email');
+
+                    if (emailStep) {
+                        emailStep.classList.add('active');
+
+                        var emailPara = emailStep.querySelector('p');
+
+                        if (emailPara) {
+                            emailPara.textContent = decision === 'APPROVE'
+                                ? 'Generating payment pack & sending email...'
+                                : 'Sending rejection notification...';
+                        }
+                    }
+
+                    pollApprovalStatus(decision, approvalStep, buttons);
+                    return;
+                }
+
+                if (response.ok && data.response !== undefined) {
+                    finishApprovalUI(decision, data.response, approvalStep, buttons);
+                    return;
+                }
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                finishApprovalUI(decision, data.response || '', approvalStep, buttons);
+
+            } catch (error) {
+                var errorMsg = error.message;
+
+                if (errorMsg.includes('Session not found') || errorMsg.includes('not found') || errorMsg.includes('404')) {
+                    errorMsg = 'Session expired or server was restarted. Please upload documents again and restart the workflow.';
+                }
+
+                alert('Error: ' + errorMsg);
+
+                buttons.forEach(btn => btn.disabled = false);
+
+                approvalStep.classList.remove('active');
+                approvalStep.classList.add('error');
+
+                var msg = approvalStep.querySelector('p');
+                if (msg) msg.textContent = 'Session lost - please restart workflow';
+
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = 'Start Processing';
+            }
+        }
+
+        function finishApprovalUI(decision, responseText, approvalStep, buttons) {
+            var stepEl = approvalStep || document.getElementById('step-approval');
+            var emailStep = document.getElementById('step-email');
+            var btnContainer = document.getElementById('approvalButtons');
+            var submitBtn = document.getElementById('submitBtn');
+
+            if (stepEl) {
+                stepEl.classList.remove('active', 'waiting');
+                stepEl.classList.add('completed');
+
+                var para = stepEl.querySelector('p');
+
+                if (para) {
+                    para.textContent = decision === 'APPROVE'
+                        ? 'Approved. Payment pack generated.'
+                        : 'Rejected. Requester notified.';
+                }
+            }
+
+            if (emailStep) {
+                emailStep.classList.remove('active', 'waiting');
+                emailStep.classList.add('completed');
+
+                var emailPara = emailStep.querySelector('p');
+
+                if (emailPara) {
+                    emailPara.textContent = decision === 'APPROVE'
+                        ? 'Approval notification sent to finance team.'
+                        : 'Rejection notification sent to requester.';
+                }
+            }
+
+            if (btnContainer) btnContainer.classList.add('hidden');
+
+            showCompletionMessage(decision, responseText || '');
+
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Start New Processing';
+            }
+        }
+
+        async function pollApprovalStatus(decision, approvalStep, buttons) {
+            const interval = 1500;
+            const maxAttempts = 120;
+            var emailStep = document.getElementById('step-email');
+            var dotCount = 0;
+
+            for (let i = 0; i < maxAttempts; i++) {
+                if (i > 0) {
+                    await new Promise(function(r) {
+                        setTimeout(r, interval);
+                    });
+                }
+
+                try {
+                    const r = await fetch('/api/status/' + currentSessionId);
+                    const s = await r.json();
+
+                    if (s.status === 'complete') {
+                        finishApprovalUI(decision, s.response || '', approvalStep, buttons);
+                        return;
+                    }
+
+                    if (s.status === 'error') {
+                        finishApprovalUI(decision, s.error || 'Approval workflow failed.', approvalStep, buttons);
+                        return;
+                    }
+
+                    if (s.status === 'not_found') {
+                        finishApprovalUI(decision, 'Session expired or not found.', approvalStep, buttons);
+                        return;
+                    }
+
+                    if (s.status === 'approving' && emailStep) {
+                        dotCount = (dotCount + 1) % 4;
+                        var dots = '.'.repeat(dotCount + 1);
+
+                        emailStep.classList.remove('completed', 'waiting');
+                        emailStep.classList.add('active');
+
+                        var emailPara = emailStep.querySelector('p');
+
+                        if (emailPara) {
+                            emailPara.textContent = decision === 'APPROVE'
+                                ? 'Generating payment pack & sending email' + dots
+                                : 'Sending rejection notification' + dots;
+                        }
+                    }
+
+                } catch (e) {
+                    console.warn('Status poll error:', e);
+                }
+            }
+
+            finishApprovalUI(decision, 'Timed out waiting for workflow.', approvalStep, buttons);
+        }
+
+        function showCompletionMessage(decision, response) {
+            workflowSteps['final_decision'] = {
+                message: decision === 'APPROVE' ? 'Invoice approved for payment' : 'Invoice rejected',
+                status: 'completed',
+                timestamp: new Date().toISOString()
+            };
+
+            fullStepMessages['final_decision'] = decision === 'APPROVE'
+                ? 'Invoice approved for payment'
+                : 'Invoice rejected';
+
+            if (decision === 'APPROVE') {
+                workflowSteps['payment_pack'] = {
+                    message: response || 'Payment authorization package generated.',
+                    status: 'completed',
+                    timestamp: new Date().toISOString()
+                };
+
+                fullStepMessages['payment_pack'] = response || 'Payment authorization package generated.';
+            }
+
+            workflowSteps['email_sent'] = {
+                message: decision === 'APPROVE'
+                    ? 'Approval notification email sent to finance team.'
+                    : 'Rejection notification email sent to requester.',
+                status: 'completed',
+                timestamp: new Date().toISOString()
+            };
+
+            fullStepMessages['email_sent'] = workflowSteps['email_sent'].message;
+
+            const banner = document.createElement('div');
+            banner.className = 'completion-banner ' + (decision === 'APPROVE' ? 'success' : 'rejected');
+
+            const h3 = document.createElement('h3');
+            h3.textContent = decision === 'APPROVE' ? 'Invoice Approved' : 'Invoice Rejected';
+
+            const p = document.createElement('p');
+            p.textContent = decision === 'APPROVE'
+                ? 'Payment pack has been generated and email notification sent to finance team.'
+                : 'The requester has been notified of the rejection.';
+
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'btn-close';
+            closeBtn.textContent = 'x';
+            closeBtn.onclick = function() {
+                banner.remove();
+            };
+
+            banner.appendChild(h3);
+            banner.appendChild(p);
+            banner.appendChild(closeBtn);
+
+            document.querySelector('.progress-section').appendChild(banner);
+
+            showWorkflowSummary(decision);
+        }
+
+        var SUMMARY_STEP_ORDER = [
+            'upload',
+            'foundry_upload',
+            'init-variables',
+            'invoke-extractor',
+            'invoke-matcher',
+            'invoke-sql-validator',
+            'invoke-risk-scorer',
+            'approval',
+            'approval-question',
+            'approval_submit',
+            'invoke-payment-pack',
+            'payment_pack',
+            'invoke-approval-email',
+            'invoke-rejection-email',
+            'email_sent',
+            'final_decision',
+            'workflow_complete'
+        ];
+
+        function showWorkflowSummary(decision) {
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'workflow-summary';
+
+            var seen = {};
+            var ordered = [];
+
+            SUMMARY_STEP_ORDER.forEach(function(key) {
+                if (workflowSteps[key] && !seen[key]) {
+                    seen[key] = true;
+
+                    ordered.push({
+                        key: key,
+                        message: workflowSteps[key].message,
+                        status: workflowSteps[key].status,
+                        timestamp: workflowSteps[key].timestamp,
+                        data: workflowSteps[key].data,
+                        info: stepInfo[key] || {
+                            name: key.replace(/_/g, ' '),
+                            icon: '',
+                            order: 99
+                        }
+                    });
+                }
+            });
+
+            Object.keys(workflowSteps).forEach(function(key) {
+                if (!seen[key]) {
+                    ordered.push({
+                        key: key,
+                        message: workflowSteps[key].message,
+                        status: workflowSteps[key].status,
+                        timestamp: workflowSteps[key].timestamp,
+                        data: workflowSteps[key].data,
+                        info: stepInfo[key] || {
+                            name: key.replace(/_/g, ' '),
+                            icon: '',
+                            order: 99
+                        }
+                    });
+                }
+            });
+
+            const header = document.createElement('h3');
+            header.textContent = 'What happened in each step';
+            summaryDiv.appendChild(header);
+
+            const sub = document.createElement('p');
+            sub.style.color = '#b7c7db';
+            sub.style.fontSize = '0.9rem';
+            sub.style.marginBottom = '8px';
+            sub.textContent = 'Summary of the workflow run. Each step shows what was done.';
+            summaryDiv.appendChild(sub);
+
+            const sessionInfo = document.createElement('p');
+            sessionInfo.style.color = '#b7c7db';
+            sessionInfo.style.marginBottom = '15px';
+            sessionInfo.innerHTML =
+                'Session: ' +
+                currentSessionId +
+                ' | Decision: <strong style="color: ' +
+                (decision === 'APPROVE' ? '#22c55e' : '#ef4444') +
+                '">' +
+                decision +
+                '</strong>';
+
+            summaryDiv.appendChild(sessionInfo);
+
+            ordered.forEach(function(step, index) {
+                const stepDiv = document.createElement('div');
+                stepDiv.className = 'summary-step' + (step.status === 'error' ? ' error' : '');
+
+                const stepHeader = document.createElement('h4');
+
+                stepHeader.innerHTML =
+                    'Step ' +
+                    (index + 1) +
+                    ': ' +
+                    step.info.name +
+                    ' <span style="opacity:0.9;font-weight:normal;">' +
+                    (step.status === 'error' ? 'Error' : 'Done') +
+                    '</span>';
+
+                stepDiv.appendChild(stepHeader);
+
+                const details = document.createElement('div');
+                details.className = 'step-details';
+                details.id = 'details-' + index;
+
+                var rawOutput = (step.data && step.data.raw_output) || '';
+                var fullMessage = fullStepMessages[step.key] || step.message || '';
+                var actualOutput = rawOutput || fullMessage || 'Completed';
+
+                actualOutput = actualOutput.trim().replace(/\n{3,}/g, '\n\n');
+
+                var outputDiv = document.createElement('div');
+                outputDiv.className = 'step-output';
+                outputDiv.style.cssText =
+                    'background:#061a36;padding:12px;border-radius:8px;font-size:0.85rem;margin-top:8px;white-space:pre-wrap;word-break:break-word;max-height:200px;overflow-y:auto;color:#dbeafe;font-family:Consolas,Monaco,monospace;border:1px solid rgba(74,163,255,0.28);';
+
+                var isLong = actualOutput.length > 300;
+                var displayText = isLong ? actualOutput.substring(0, 300) + '...' : actualOutput;
+
+                outputDiv.textContent = displayText;
+                outputDiv.setAttribute('data-full', actualOutput);
+                outputDiv.setAttribute('data-truncated', displayText);
+
+                details.appendChild(outputDiv);
+
+                if (isLong) {
+                    var expandBtn = document.createElement('button');
+                    expandBtn.className = 'toggle-details';
+                    expandBtn.textContent = 'Show Full Output';
+
+                    expandBtn.onclick = function() {
+                        if (expandBtn.textContent === 'Show Full Output') {
+                            outputDiv.textContent = outputDiv.getAttribute('data-full');
+                            outputDiv.style.maxHeight = '500px';
+                            expandBtn.textContent = 'Show Less';
+                        } else {
+                            outputDiv.textContent = outputDiv.getAttribute('data-truncated');
+                            outputDiv.style.maxHeight = '200px';
+                            expandBtn.textContent = 'Show Full Output';
+                        }
+                    };
+
+                    details.appendChild(expandBtn);
+                }
+
+                stepDiv.appendChild(details);
+                summaryDiv.appendChild(stepDiv);
+            });
+
+            document.querySelector('.progress-section').appendChild(summaryDiv);
+        }
+    </script>
 </body>
 </html>
